@@ -17,7 +17,8 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *mem;
-	char *ptr_copy, *filler;
+	char *ptr_copy;
+	char *filler;
 	unsigned int index;
 
 	if (new_size == old_size)
@@ -43,6 +44,8 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		free(ptr);
 		return (NULL);
 	}
+
+	filler = mem;
 
 	for (index = 0; index < old_size && index < new_size; index++)
 		filler[index] = *ptr_copy++;
