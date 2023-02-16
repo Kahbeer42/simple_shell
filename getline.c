@@ -11,8 +11,8 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
  * @new_size: The size in bytes for the new memory block.
  *
  * Return: If new_size == old_size - ptr.
- * If new_size == 0 and ptr is not NULL - NULL.
- * Otherwise - a pointer to the reallocated memory block.
+ *         If new_size == 0 and ptr is not NULL - NULL.
+ *         Otherwise - a pointer to the reallocated memory block.
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -29,8 +29,10 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		mem = malloc(new_size);
 		if (mem == NULL)
 			return (NULL);
+
 		return (mem);
 	}
+
 	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
@@ -49,13 +51,14 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	for (index = 0; index < old_size && index < new_size; index++)
 		filler[index] = *ptr_copy++;
+
 	free(ptr);
 	return (mem);
 }
 
 /**
  * assign_lineptr - Reassigns the lineptr variable for _getline.
- * @lineptr: A buffer to store an input string
+ * @lineptr: A buffer to store an input string.
  * @n: The size of lineptr.
  * @buffer: The string to assign to lineptr.
  * @b: The size of buffer.
@@ -123,8 +126,10 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 			input++;
 			break;
 		}
+
 		if (input >= 120)
 			buffer = _realloc(buffer, input, input + 1);
+
 		buffer[input] = c;
 		input++;
 	}
@@ -137,12 +142,3 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		input = 0;
 	return (ret);
 }
-
-
-
-
-
-
-
-
-
